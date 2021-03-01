@@ -14,12 +14,12 @@ public class TestBase {
     static void setup() {
         addListener("AllureSelenide", new AllureSelenide());
         Configuration.startMaximized = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub";
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub";
     }
 
     @AfterEach
     public void afterEach() {
-        attachScreenshot("Last SCreenshot");
+        attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
     }
