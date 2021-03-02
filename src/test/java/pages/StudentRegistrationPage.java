@@ -71,7 +71,7 @@ public class StudentRegistrationPage {
         $("#dateOfBirthInput").clear();
         $(".react-datepicker__month-select").selectOption(month);
         $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--0" + day).click();
+        selectDayFromDataPicker(day);
     }
 
     @Step("Verify successful form submit")
@@ -87,5 +87,13 @@ public class StudentRegistrationPage {
         $x("//td[text()='Picture']").parent().shouldHave(text(imageFileName));
         $x("//td[text()='Address']").parent().shouldHave(text(currentAddress));
         $x("//td[text()='State and City']").parent().shouldHave(text(state + " " + city));
+    }
+
+    public static void selectDayFromDataPicker(String dayNumber) {
+        if (Integer.parseInt(dayNumber) < 15) {
+            $$(".react-datepicker__day--0" + dayNumber).first().click();
+        } else {
+            $$(".react-datepicker__day--0" + dayNumber).last().click();
+        }
     }
 }

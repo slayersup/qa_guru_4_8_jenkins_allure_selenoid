@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
+import static pages.StudentRegistrationPage.selectDayFromDataPicker;
 import static utils.RandomUtils.getRandomBYearMap;
 import static utils.RandomUtils.getRandomGender;
 
@@ -54,7 +55,7 @@ public class AutomationPracticeFormWithFakerLambdaTests extends TestBase {
             $("#dateOfBirthInput").click();
             $(".react-datepicker__month-select").selectOption(monthOfBirth);
             $(".react-datepicker__year-select").selectOption(yearOfBirth);
-            $(".react-datepicker__day--0" + dayOfBirth).click();
+            selectDayFromDataPicker(dayOfBirth);
 
             $("#subjectsInput").setValue(englishSubject).pressEnter();
             $("#subjectsInput").setValue(mathsSubject).pressEnter();

@@ -7,6 +7,7 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static pages.StudentRegistrationPage.selectDayFromDataPicker;
 
 public class AutomationPracticeFormTests extends TestBase{
 
@@ -17,7 +18,7 @@ public class AutomationPracticeFormTests extends TestBase{
             userNumber = "1234567890",
             yearOfBirth = "1972",
             monthOfBirth = "January",
-            dayOfBirth = "16    ",
+            dayOfBirth = "16",
             englishSubject = "English",
             mathsSubject = "Maths",
             sportsHobby = "Sports",
@@ -41,7 +42,7 @@ public class AutomationPracticeFormTests extends TestBase{
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
-        $(".react-datepicker__day--0" + dayOfBirth).click();
+        selectDayFromDataPicker(dayOfBirth);
 
         $("#subjectsInput").setValue(englishSubject).pressEnter();
         $("#subjectsInput").setValue(mathsSubject).pressEnter();
