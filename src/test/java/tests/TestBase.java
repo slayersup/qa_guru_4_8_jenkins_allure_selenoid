@@ -18,11 +18,13 @@ public class TestBase {
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.startMaximized = true;
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud:4444/wd/hub";
+        if (System.getProperty("remote_driver") != null) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = System.getProperty("remote_driver");
+        }
     }
 
     @AfterEach
@@ -30,7 +32,8 @@ public class TestBase {
         attachScreenshot("Last screenshot");
         attachPageSource();
         attachAsText("Browser console logs", getConsoleLogs());
-        attachVideo();
+        if (System.getProperty("video_storage") != null)
+            attachVideo();
         closeWebDriver();
     }
 }
