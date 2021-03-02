@@ -68,7 +68,7 @@ public class AutomationPracticeFormWithFakerLambdaTests extends TestBase {
         });
 
         step("Verify Submit Form", () -> {
-            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form WRONG"));
+            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
             ElementsCollection submitTableRows = $$(".table-responsive tr");
             submitTableRows.filterBy(text("Student Name")).shouldHave(texts(firstName + " " + lastName));

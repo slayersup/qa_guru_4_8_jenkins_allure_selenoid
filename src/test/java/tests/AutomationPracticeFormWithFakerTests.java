@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -36,6 +37,7 @@ public class AutomationPracticeFormWithFakerTests extends TestBase{
                 currentAddress = "Street Lenin, 1",
                 state = "Haryana",
                 city = "Panipat";
+
         open("https://demoqa.com/automation-practice-form");
 
         $("#firstName").setValue(firstName);
@@ -61,7 +63,6 @@ public class AutomationPracticeFormWithFakerTests extends TestBase{
         $("#submit").click();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-
         ElementsCollection submitTableRows = $$(".table-responsive tr");
         submitTableRows.filterBy(text("Student Name")).shouldHave(texts(firstName + " " + lastName));
         submitTableRows.filterBy(text("Student Email")).shouldHave(texts(email));
@@ -74,5 +75,15 @@ public class AutomationPracticeFormWithFakerTests extends TestBase{
         submitTableRows.filterBy(text("Picture")).shouldHave(texts(imageFileName));
         submitTableRows.filterBy(text("Address")).shouldHave(texts(currentAddress));
         submitTableRows.filterBy(text("State and City")).shouldHave(texts(state + " " + city));
+    }
+
+    @Test
+    @Tag("negative")
+    void negativeFillFormTest() {
+        open("https://demoqa.com/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+
+        $("#submit").click();
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
 }
