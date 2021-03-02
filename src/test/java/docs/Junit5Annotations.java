@@ -21,7 +21,6 @@ public class Junit5Annotations {
         System.out.println("    beforeEach1 here");
     }
 
-    @Disabled
     @Test
     @DisplayName("Some test")
     void someTest() {
@@ -29,7 +28,6 @@ public class Junit5Annotations {
         assertTrue(true);
     }
 
-    @Disabled
     @Test
     @DisplayName("Another test")
     void anotherTest() {
